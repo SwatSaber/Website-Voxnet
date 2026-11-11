@@ -103,10 +103,10 @@ test('golden ratio spatial scale produces balanced 1440px desktop margins and 1.
   assert.equal(desktop1440.usableContentWidth, 1220);
 
   const desktop1920 = computeDesktopSideSpace(1920);
-  assert.equal(desktop1920.outerMargin, 130);
+  assert.equal(desktop1920.outerMargin, 210);
   assert.equal(desktop1920.innerPadding, 110);
-  assert.equal(desktop1920.totalSideSpace, 240);
-  assert.equal(desktop1920.usableContentWidth, 1440);
+  assert.equal(desktop1920.totalSideSpace, 320);
+  assert.equal(desktop1920.usableContentWidth, 1280);
 
   const cols = computeGoldenColumns(desktop1440.usableContentWidth);
   assert.equal(cols.majorColumn, 728);

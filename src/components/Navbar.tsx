@@ -43,7 +43,7 @@ export function Navbar({ onConsultClick }: NavbarProps) {
           ? 'bg-white border-[#EBEBEB]'
           : mobileMenuOpen
             ? 'bg-[#B84408] border-white/20'
-            : 'bg-transparent border-white/20'
+            : 'bg-transparent border-white/15'
       }`}
     >
       <div className={`${PAGE_CONTAINER_CLASS} h-[64px] md:h-[68px] flex items-center justify-between gap-8`}>

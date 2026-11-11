@@ -37,7 +37,7 @@ export function Footer() {
             © {new Date().getFullYear()} PT Lima Satu Tiga Global Tel-Access (Voxnet). Seluruh hak cipta dilindungi.
           </p>
           <p>
-            Lisensi Resmi Kominfo: PSE · Jasa Call Center
+            Berlisensi Resmi Kominfo: Jasa Call Center · PSE · Internet Service Provider
           </p>
         </div>
       </div>

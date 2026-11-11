@@ -15,7 +15,7 @@ export function CompetitiveEdgeSection() {
                 Keunggulan Kompetitif
               </p>
               <h2 className="font-display text-[26px] sm:text-[34px] font-bold text-[#1A1A1A] tracking-[-0.02em] leading-[1.18] text-balance">
-                Mengapa Ratusan Enterprise Memilih Voxnet?
+                Mengapa Perusahaan Enterprise Memilih Voxnet?
               </h2>
             </div>
 

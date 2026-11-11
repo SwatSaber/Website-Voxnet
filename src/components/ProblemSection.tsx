@@ -14,9 +14,9 @@ const PROBLEM_CARD_IMAGES: Record<string, string> = {
 export function ProblemSection() {
   return (
     <section className={`bg-[#F8F9FA] border-b border-[#EBEBEB] ${SECTION_PADDING_Y_CLASS}`}>
-      <div className={`${PAGE_CONTAINER_CLASS} space-y-[42px] lg:space-y-[52px]`}>
+      <div className={`${PAGE_CONTAINER_CLASS} space-y-[44px] lg:space-y-[60px]`}>
         {/* Editorial Asymmetric Split Narrative Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.618fr] gap-[26px] lg:gap-[42px] items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-[26px] lg:gap-[48px] items-end">
           <div className="space-y-[16px]">
             <p className="text-[13px] font-semibold tracking-wider text-[#B84408]">
               Realitas Operasional Enterprise
@@ -26,19 +26,19 @@ export function ProblemSection() {
             </h2>
           </div>
 
-          <p className="text-[16px] text-[#4A4A4A] leading-[1.618] max-w-[70ch]">
+          <p className="text-[16px] text-[#4A4A4A] leading-[1.68] max-w-[64ch]">
             {PROBLEM_CONTENT.body}
           </p>
         </div>
 
-        {/* 3 Visual Bottleneck Cards with 16:9 top photo, tight text stack, and 2-line description */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[26px]">
+        {/* 3 Visual Bottleneck Cards with upright 4:3 photo, tight text stack, and 2-line description */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[26px] lg:gap-[32px]">
           {PROBLEM_CONTENT.painPoints.map((point) => (
             <div
               key={point.number}
               className="bg-white border border-[#EBEBEB] rounded-[16px] overflow-hidden flex flex-col"
             >
-              <div className="aspect-[16/9] w-full overflow-hidden border-b border-[#EBEBEB] bg-[#F8F9FA]">
+              <div className="aspect-[4/3] w-full overflow-hidden border-b border-[#EBEBEB] bg-[#F8F9FA]">
                 <ResilientImage
                   src={PROBLEM_CARD_IMAGES[point.number] ?? callTrafficImg}
                   alt={point.imageAlt}
@@ -47,14 +47,14 @@ export function ProblemSection() {
                 />
               </div>
 
-              <div className="p-[24px] lg:p-[26px] space-y-[10px]">
+              <div className="p-[26px] lg:p-[30px] space-y-[12px]">
                 <span className="font-mono text-[13px] font-semibold text-[#B84408] tabular-nums block leading-none">
                   {point.number}.
                 </span>
-                <h3 className="font-display text-[18px] font-bold text-[#1A1A1A] leading-[1.3]">
+                <h3 className="font-display text-[18.5px] font-bold text-[#1A1A1A] leading-[1.3]">
                   {point.title}
                 </h3>
-                <p className="text-[14px] text-[#525252] leading-[1.55] line-clamp-2">
+                <p className="text-[14.5px] text-[#525252] leading-[1.6] line-clamp-2">
                   {point.detail}
                 </p>
               </div>

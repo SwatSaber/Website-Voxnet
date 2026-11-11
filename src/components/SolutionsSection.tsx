@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Check, Search } from 'lucide-react';
+import { ArrowRight, Check, Search } from 'lucide-react';
 import { COVERAGE_CITIES, SOLUTION_PILLARS, SolutionPillar } from '../data/voxnetContent';
 import { filterCoverageCities } from '../utils/consultationLogic';
 import { PAGE_CONTAINER_CLASS, SECTION_PADDING_Y_CLASS } from '../utils/goldenRatio';
@@ -137,9 +137,10 @@ export function SolutionsSection({ onSelectSolutionForConsultation }: SolutionsS
               <button
                 type="button"
                 onClick={() => onSelectSolutionForConsultation(activePillar.title)}
-                className="w-full py-[13px] px-[26px] min-h-[44px] rounded-lg vox-cta-gradient text-white text-[14px] font-semibold transition-all duration-200 truncate max-w-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A1A1A]"
+                className="w-full py-[13px] px-[26px] min-h-[44px] rounded-lg vox-cta-gradient text-white text-[14px] font-semibold inline-flex items-center justify-center gap-[8px] transition-all duration-200 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A1A1A]"
               >
-                Diskusikan {activePillar.title}
+                <span>Diskusikan Solusi Ini</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
               </button>
             </div>
           </div>
