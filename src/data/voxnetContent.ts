@@ -42,8 +42,9 @@ export const HERO_CONTENT = {
   primaryCta: 'Jadwalkan Sesi Diskusi',
   secondaryCta: 'Pelajari Solusi Kami',
   trustItems: [
-    'Dipercaya 30+ Perusahaan Enterprise',
-    'Lisensi Resmi Kominfo (ISP, PSE, Jasa Call Center)',
+    'Lisensi Resmi Kominfo',
+    'Penyelenggara Sistem Elektronik (PSE)',
+    'Jasa Call Center Resmi',
   ],
 };
 
@@ -54,17 +55,23 @@ export const PROBLEM_CONTENT = {
     {
       number: '01',
       title: 'Trafik Padat Menyebabkan Call Drop',
-      detail: 'Lonjakan panggilan harian memicu antrean macet dan kualitas audio terputus saat jam sibuk layanan pelanggan.',
+      detail: 'Lonjakan trafik jam sibuk picu antrean macet hingga audio terputus.',
+      imageAlt: 'Meja operasi contact center enterprise dengan telepon IP dan headset di ruang kantor modern',
+      fallbackTitle: 'Stabilitas Trafik Suara Enterprise',
     },
     {
       number: '02',
       title: 'Integrasi Platform yang Terfragmentasi',
-      detail: 'Menghubungkan CRM, Omnichannel, atau Voicebot ke jaringan telepon lokal sering memerlukan penyesuaian teknis rumit.',
+      detail: 'Integrasi CRM, Omnichannel, atau Voicebot ke jalur lokal masih rumit.',
+      imageAlt: 'Perangkat gateway jaringan fiber optik putih dengan kabel patch oranye di ruang server kaca',
+      fallbackTitle: 'Interkoneksi Gateway & API Terbuka',
     },
     {
       number: '03',
       title: 'Risiko Kepatuhan & Kebocoran Data',
-      detail: 'Infrastruktur tanpa izin resmi Kominfo serta kontrol akses lemah membuka celah sanksi operasional dan kebocoran data suara.',
+      detail: 'Sistem tanpa izin Kominfo serta proteksi lemah rentan bocor dan sanksi.',
+      imageAlt: 'Koridor keamanan ruang server enterprise dengan kontrol akses biometrik dan dinding kaca buram',
+      fallbackTitle: 'Keamanan & Kepatuhan Regulasi Kominfo',
     },
   ],
 };
@@ -141,7 +148,7 @@ export const COMPETITIVE_EDGES: CompetitiveAdvantage[] = [
     title: 'Patuh Regulasi Operasional',
     description:
       'Berbekal legalitas utuh dari Kominfo dan perizinan nasional, pastikan seluruh alur kerja perusahaan Anda selalu beroperasi di dalam jalur aman regulasi Indonesia.',
-    evidenceTag: 'Kominfo Resmi · ISP · PSE · Jasa Call Center',
+    evidenceTag: 'Kominfo Resmi · PSE · Jasa Call Center',
   },
   {
     number: '03',
@@ -195,7 +202,7 @@ export const USE_CASES: UseCaseProfile[] = [
     recommendedNumbering: '0800',
     defaultDailyCalls: 50000,
     architectureNotes: [
-      'Kepatuhan penuh terhadap lisensi Kominfo (ISP, PSE, Jasa Call Center) tanpa hambatan birokrasi lokal',
+      'Kepatuhan penuh terhadap lisensi Kominfo (PSE dan Jasa Call Center) tanpa hambatan birokrasi lokal',
       'Interkoneksi carrier-grade ke titik POP Jakarta untuk terminasi klien multinasional',
       'Alokasi nomor lokal 22 kota serta akses 1500/0800 untuk perusahaan multinasional',
     ],
@@ -243,7 +250,6 @@ export const CREDIBILITY_CONTENT = {
     ],
   },
   licenses: [
-    { code: 'ISP', name: 'Internet Service Provider', issuer: 'Kominfo RI' },
     { code: 'PSE', name: 'Penyelenggara Sistem Elektronik', issuer: 'Kominfo RI' },
     { code: 'JCC', name: 'Jasa Call Center Resmi', issuer: 'Kominfo RI' },
   ],

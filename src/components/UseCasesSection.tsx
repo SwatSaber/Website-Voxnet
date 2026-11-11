@@ -8,6 +8,7 @@ import {
   PbxMode,
   SizingRecommendation,
 } from '../utils/consultationLogic';
+import { PAGE_CONTAINER_CLASS, SECTION_PADDING_Y_CLASS } from '../utils/goldenRatio';
 import { ResilientImage } from './ResilientImage';
 
 interface UseCasesSectionProps {
@@ -44,10 +45,10 @@ export function UseCasesSection({ onApplyConfiguration }: UseCasesSectionProps) 
   };
 
   return (
-    <section id="use-cases" className="bg-white border-b border-[#EBEBEB] py-[68px] lg:py-[110px]">
-      <div className="max-w-[1220px] mx-auto px-[26px] md:px-[42px] lg:px-[68px]">
-        <div className="flex flex-col gap-[26px] mb-[42px]">
-          <div className="max-w-[644px] space-y-[16px]">
+    <section id="use-cases" className={`scroll-mt-[68px] bg-white border-b border-[#EBEBEB] ${SECTION_PADDING_Y_CLASS}`}>
+      <div className={PAGE_CONTAINER_CLASS}>
+        <div className="flex flex-col min-[1440px]:flex-row min-[1440px]:items-end justify-between gap-[26px] mb-[42px]">
+          <div className="max-w-[680px] min-[1440px]:max-w-[560px] space-y-[16px]">
             <p className="text-[13px] font-semibold tracking-wider text-[#B84408]">
               Segmen Bisnis & Use Case
             </p>
@@ -56,11 +57,11 @@ export function UseCasesSection({ onApplyConfiguration }: UseCasesSectionProps) 
             </h2>
           </div>
 
-          {/* Interactive Use Case Segmented Control — single horizontal row on tablet/desktop */}
+          {/* Interactive Use Case Segmented Control */}
           <div
             role="tablist"
             aria-label="Pilih model bisnis Voxnet"
-            className="inline-flex flex-wrap sm:flex-nowrap items-center gap-[6px] p-[6px] bg-[#F8F9FA] border border-[#EBEBEB] rounded-[12px] w-fit max-w-full"
+            className="flex flex-col sm:inline-flex sm:flex-row items-stretch sm:items-center gap-[6px] p-[6px] bg-[#F8F9FA] border border-[#EBEBEB] rounded-[12px] w-full sm:w-fit max-w-full shrink-0"
           >
             {USE_CASES.map((uc) => {
               const isSelected = uc.id === selectedSectorId;
@@ -71,7 +72,7 @@ export function UseCasesSection({ onApplyConfiguration }: UseCasesSectionProps) 
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => handleSectorChange(uc)}
-                  className={`px-[16px] py-[10px] min-h-[42px] rounded-lg text-[13px] sm:text-[14px] font-semibold transition-colors duration-100 whitespace-nowrap shrink-0 cursor-pointer ${
+                  className={`px-[16px] py-[10px] min-h-[42px] rounded-lg text-[13px] sm:text-[14px] font-semibold transition-colors duration-100 whitespace-nowrap shrink-0 text-left sm:text-center cursor-pointer ${
                     isSelected
                       ? 'bg-white text-[#1A1A1A] border border-[#EBEBEB]'
                       : 'text-[#525252] hover:text-[#1A1A1A] border border-transparent'
@@ -86,9 +87,9 @@ export function UseCasesSection({ onApplyConfiguration }: UseCasesSectionProps) 
 
         {/* Use Case Detail (38.2%) + Live Capacity Estimator (61.8%) */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.618fr] gap-[26px] lg:gap-[42px] items-stretch">
-          {/* Left: Selected Industry Showcase (Golden Ratio landscape image height 246px inside 398px column) */}
+          {/* Left: Selected Industry Showcase */}
           <div className="flex flex-col justify-between bg-[#F8F9FA] border border-[#EBEBEB] rounded-[16px] overflow-hidden">
-            <div className="h-[246px] overflow-hidden border-b border-[#EBEBEB]">
+            <div className="h-[260px] lg:h-[320px] xl:h-[340px] overflow-hidden border-b border-[#EBEBEB]">
               <ResilientImage
                 src={bpoCenterImg}
                 alt="Operasional Contact Center dan tim komunikasi bisnis modern berstandar enterprise"
@@ -97,7 +98,7 @@ export function UseCasesSection({ onApplyConfiguration }: UseCasesSectionProps) 
               />
             </div>
 
-            <div className="p-[26px] space-y-[26px] flex-1 flex flex-col justify-between">
+            <div className="p-[26px] lg:p-[34px] space-y-[26px] flex-1 flex flex-col justify-between">
               <div className="space-y-[10px]">
                 <p className="text-[13px] font-semibold text-[#B84408]">{activeUseCase.label}</p>
                 <h3 className="font-display text-[21px] font-bold text-[#1A1A1A] leading-[1.272]">
@@ -214,7 +215,7 @@ export function UseCasesSection({ onApplyConfiguration }: UseCasesSectionProps) 
                 </div>
               </div>
 
-              {/* Calculated Recommendation Summary — hairline divided, no nested card border */}
+              {/* Calculated Recommendation Summary */}
               <div className="border-y border-[#EBEBEB] py-[26px] space-y-[16px]">
                 <div className="flex flex-wrap items-baseline justify-between gap-[16px] pb-[16px] border-b border-[#EBEBEB]">
                   <span className="text-[13px] font-semibold text-[#525252]">

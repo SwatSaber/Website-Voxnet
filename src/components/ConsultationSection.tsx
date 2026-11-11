@@ -6,6 +6,7 @@ import {
   ConsultationFormErrors,
   validateConsultationForm,
 } from '../utils/consultationLogic';
+import { PAGE_CONTAINER_CLASS, SECTION_PADDING_Y_CLASS } from '../utils/goldenRatio';
 import { VoxnetLogo } from './VoxnetLogo';
 import { VoxnetSupergraphic } from './VoxnetSupergraphic';
 
@@ -21,6 +22,21 @@ const NEED_OPTIONS = [
   'Managed Services Terpadu',
   'Solusi Call Center & BPO',
   'Terminasi Voice AI & SaaS',
+];
+
+const SESSION_EXPECTATIONS = [
+  {
+    number: '01',
+    text: 'Audit kebutuhan volume panggilan harian dan skema konkurensi kanal SIP Trunk',
+  },
+  {
+    number: '02',
+    text: 'Pemilihan topologi Cloud, On-Premises, atau Hybrid PBX beserta kebijakan keamanan DLP',
+  },
+  {
+    number: '03',
+    text: 'Kesiapan alokasi nomor lokal 22 kota serta jalur khusus 1500 dan 0800',
+  },
 ];
 
 export function ConsultationSection({ prefillNeed, prefillNotes }: ConsultationSectionProps) {
@@ -71,42 +87,62 @@ export function ConsultationSection({ prefillNeed, prefillNotes }: ConsultationS
   return (
     <section
       id="konsultasi"
-      className="relative overflow-hidden vox-conversion-gradient py-[68px] lg:py-[110px] text-white"
+      className={`scroll-mt-[68px] relative overflow-hidden vox-conversion-gradient ${SECTION_PADDING_Y_CLASS} text-white`}
     >
-      {/* Semi-transparent white supergraphic (10%–25% opacity) per Voxnet brand spec */}
+      {/* Subtle white supergraphic behind left open lower region */}
       <VoxnetSupergraphic
         tone="white"
-        className="absolute -right-20 -bottom-24 w-[500px] h-auto opacity-20"
+        className="hidden md:block absolute -left-24 -bottom-28 w-[400px] h-auto opacity-[0.07]"
       />
 
-      <div className="relative max-w-[1220px] mx-auto px-[26px] md:px-[42px] lg:px-[68px]">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.618fr] gap-[26px] lg:gap-[42px] items-start">
+      <div className={`relative ${PAGE_CONTAINER_CLASS}`}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-[26px] lg:gap-[42px] items-stretch">
           {/* Left Narrative on Orange Surface */}
-          <div className="space-y-[26px] pt-[6px]">
-            <VoxnetLogo surface="orange" />
+          <div className="flex flex-col justify-between space-y-[26px] py-[6px]">
+            <div className="space-y-[26px]">
+              <VoxnetLogo surface="orange" />
 
-            <div className="space-y-[16px]">
-              <h2 className="font-display text-[26px] sm:text-[34px] font-extrabold text-white tracking-[-0.025em] leading-[1.18] text-balance">
-                {CONVERSION_CONTENT.headline}
-              </h2>
+              <div className="space-y-[16px]">
+                <h2 className="font-display text-[26px] sm:text-[34px] font-extrabold text-white tracking-[-0.025em] leading-[1.18] text-balance">
+                  {CONVERSION_CONTENT.headline}
+                </h2>
 
-              <p className="text-[16px] text-white/95 leading-[1.618]">
-                {CONVERSION_CONTENT.body}
-              </p>
+                <p className="text-[16px] text-white/95 leading-[1.618] max-w-[54ch]">
+                  {CONVERSION_CONTENT.body}
+                </p>
+              </div>
             </div>
 
-            <div className="pt-[26px] border-t border-white/25 space-y-[10px]">
-              <p className="text-[14px] font-semibold text-white leading-[1.618]">
-                {CONVERSION_CONTENT.microcopy}
-              </p>
-              <p className="text-[13px] text-white/90">
-                PT Lima Satu Tiga Global Tel-Access · Solusi Enterprise Berlisensi Kominfo
-              </p>
+            <div className="space-y-[26px]">
+              <div className="pt-[26px] border-t border-white/25 space-y-[16px]">
+                <p className="text-[13px] font-semibold text-white/95">
+                  Cakupan Sesi Konsultasi Teknis
+                </p>
+                <div className="space-y-[10px]">
+                  {SESSION_EXPECTATIONS.map((item) => (
+                    <div key={item.number} className="flex items-start gap-[10px] text-[14px] text-white/90 leading-[1.5]">
+                      <span className="font-mono text-[13px] font-semibold text-white/80 tabular-nums shrink-0 pt-[1px]">
+                        {item.number}.
+                      </span>
+                      <span>{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-[16px] border-t border-white/25 space-y-[6px]">
+                <p className="text-[14px] font-semibold text-white leading-[1.618]">
+                  {CONVERSION_CONTENT.microcopy}
+                </p>
+                <p className="text-[13px] text-white/90">
+                  PT Lima Satu Tiga Global Tel-Access · Solusi Enterprise Berlisensi Kominfo
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Right High-Contrast White Enterprise Consultation Form */}
-          <div className="bg-white text-[#1A1A1A] border border-[#EBEBEB] rounded-[16px] p-[26px] sm:p-[42px]">
+          <div className="bg-white text-[#1A1A1A] border border-[#EBEBEB] rounded-[16px] p-[26px] sm:p-[42px] flex flex-col justify-center">
             {submittedRecord ? (
               <div
                 data-testid="consultation-confirmation"

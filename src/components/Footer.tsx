@@ -1,9 +1,10 @@
+import { PAGE_CONTAINER_CLASS } from '../utils/goldenRatio';
 import { VoxnetLogo } from './VoxnetLogo';
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-[#EBEBEB] py-[68px]">
-      <div className="max-w-[1220px] mx-auto px-[26px] md:px-[42px] lg:px-[68px] space-y-[42px]">
+    <footer className="bg-white border-t border-[#EBEBEB] py-[42px] md:py-[68px]">
+      <div className={`${PAGE_CONTAINER_CLASS} space-y-[26px] md:space-y-[42px]`}>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-[26px]">
           <div className="space-y-[10px]">
             <VoxnetLogo surface="light" />
@@ -36,7 +37,7 @@ export function Footer() {
             © {new Date().getFullYear()} PT Lima Satu Tiga Global Tel-Access (Voxnet). Seluruh hak cipta dilindungi.
           </p>
           <p>
-            Lisensi Resmi Kominfo: ISP · PSE · Jasa Call Center
+            Lisensi Resmi Kominfo: PSE · Jasa Call Center
           </p>
         </div>
       </div>

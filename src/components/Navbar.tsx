@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { PAGE_CONTAINER_CLASS } from '../utils/goldenRatio';
 import { VoxnetLogo } from './VoxnetLogo';
 
 interface NavbarProps {
@@ -15,43 +16,72 @@ const NAV_ITEMS = [
 
 export function Navbar({ onConsultClick }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleMobileConsult = () => {
     setMobileMenuOpen(false);
     onConsultClick();
   };
 
+  const useLightBar = isScrolled;
+
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#EBEBEB]">
-      <div className="max-w-[1220px] mx-auto px-[26px] md:px-[42px] lg:px-[68px] h-[68px] flex items-center justify-between gap-[26px] lg:gap-[42px]">
-        {/* Zone 1: Clean Single-Line Brand Wordmark */}
+    <header
+      data-scrolled={useLightBar ? 'true' : 'false'}
+      className={`fixed top-0 left-0 right-0 z-40 border-b transition-colors duration-200 ${
+        useLightBar
+          ? 'bg-white border-[#EBEBEB]'
+          : mobileMenuOpen
+            ? 'bg-[#B84408] border-white/20'
+            : 'bg-transparent border-white/20'
+      }`}
+    >
+      <div className={`${PAGE_CONTAINER_CLASS} h-[64px] md:h-[68px] flex items-center justify-between gap-8`}>
         <a
           href="#top"
           aria-label="Beranda Voxnet"
-          className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E7621B] rounded"
+          className={`rounded whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 ${
+            useLightBar ? 'focus-visible:outline-[#E7621B]' : 'focus-visible:outline-white'
+          }`}
         >
-          <VoxnetLogo surface="light" />
+          <VoxnetLogo surface={useLightBar ? 'light' : 'orange-monochrome'} />
         </a>
 
-        {/* Zone 2: 4 Clean Single-Line Navigation Links */}
         <nav aria-label="Navigasi Utama" className="hidden md:flex items-center gap-[26px] lg:gap-[42px]">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-[14px] font-medium text-[#404040] hover:text-[#B84408] transition-colors whitespace-nowrap shrink-0 underline-offset-8 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E7621B] rounded"
+              className={`text-[14px] font-medium transition-colors whitespace-nowrap shrink-0 underline-offset-8 hover:underline rounded focus-visible:outline-2 focus-visible:outline-offset-4 ${
+                useLightBar
+                  ? 'text-[#404040] hover:text-[#B84408] focus-visible:outline-[#E7621B]'
+                  : 'text-white/95 hover:text-white focus-visible:outline-white'
+              }`}
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* Zone 3: Single Primary Action */}
         <div className="flex items-center gap-[10px] shrink-0">
           <button
             type="button"
             onClick={onConsultClick}
-            className="hidden sm:inline-flex items-center justify-center px-[26px] py-[10px] min-h-[42px] rounded-lg vox-cta-gradient text-white text-[14px] font-semibold transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A1A1A]"
+            className={`hidden sm:inline-flex items-center justify-center px-[22px] py-[10px] min-h-[40px] rounded-lg text-[14px] font-semibold transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 ${
+              useLightBar
+                ? 'vox-cta-gradient text-white focus-visible:outline-[#1A1A1A]'
+                : 'bg-white text-[#B84408] hover:bg-[#FFF5EE] focus-visible:outline-white'
+            }`}
           >
             Jadwalkan Diskusi
           </button>
@@ -62,7 +92,11 @@ export function Navbar({ onConsultClick }: NavbarProps) {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation-drawer"
             aria-label={mobileMenuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
-            className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-[#EBEBEB] text-[#1A1A1A] hover:bg-[#F8F9FA] transition-colors cursor-pointer"
+            className={`md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border transition-colors cursor-pointer ${
+              useLightBar
+                ? 'border-[#EBEBEB] text-[#1A1A1A] hover:bg-[#F8F9FA]'
+                : 'border-white/35 text-white bg-white/10 hover:bg-white/20'
+            }`}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -72,7 +106,11 @@ export function Navbar({ onConsultClick }: NavbarProps) {
       {mobileMenuOpen && (
         <div
           id="mobile-navigation-drawer"
-          className="md:hidden bg-white border-t border-[#EBEBEB] px-[26px] py-[16px] space-y-[10px]"
+          className={`md:hidden border-t px-[26px] sm:px-[42px] py-[16px] space-y-[10px] ${
+            useLightBar
+              ? 'bg-white border-[#EBEBEB]'
+              : 'bg-[#B84408] border-white/20'
+          }`}
         >
           <nav aria-label="Navigasi Mobile" className="flex flex-col space-y-[6px]">
             {NAV_ITEMS.map((item) => (
@@ -80,17 +118,25 @@ export function Navbar({ onConsultClick }: NavbarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="py-[10px] px-[10px] text-[16px] font-medium text-[#1A1A1A] hover:text-[#B84408] rounded-md"
+                className={`py-[10px] px-[10px] text-[16px] font-medium rounded-md ${
+                  useLightBar
+                    ? 'text-[#1A1A1A] hover:text-[#B84408]'
+                    : 'text-white hover:bg-white/10'
+                }`}
               >
                 {item.label}
               </a>
             ))}
           </nav>
-          <div className="pt-[16px] border-t border-[#EBEBEB]">
+          <div className={`pt-[16px] border-t ${useLightBar ? 'border-[#EBEBEB]' : 'border-white/20'}`}>
             <button
               type="button"
               onClick={handleMobileConsult}
-              className="w-full py-[13px] px-[26px] min-h-[44px] rounded-lg vox-cta-gradient text-white text-[14px] font-semibold text-center cursor-pointer"
+              className={`w-full py-[13px] px-[26px] min-h-[44px] rounded-lg text-[14px] font-semibold text-center cursor-pointer ${
+                useLightBar
+                  ? 'vox-cta-gradient text-white'
+                  : 'bg-white text-[#B84408] hover:bg-[#FFF5EE]'
+              }`}
             >
               Jadwalkan Sesi Diskusi
             </button>

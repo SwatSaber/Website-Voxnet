@@ -1,11 +1,12 @@
 import datacenterNodeImg from '../assets/images/voxnet_datacenter_node_1794368139770.jpg';
 import { COMPETITIVE_EDGES } from '../data/voxnetContent';
+import { PAGE_CONTAINER_CLASS, SECTION_PADDING_Y_CLASS } from '../utils/goldenRatio';
 import { ResilientImage } from './ResilientImage';
 
 export function CompetitiveEdgeSection() {
   return (
-    <section id="keunggulan" className="bg-[#F8F9FA] border-b border-[#EBEBEB] py-[68px] lg:py-[110px]">
-      <div className="max-w-[1220px] mx-auto px-[26px] md:px-[42px] lg:px-[68px]">
+    <section id="keunggulan" className={`scroll-mt-[68px] bg-[#F8F9FA] border-b border-[#EBEBEB] ${SECTION_PADDING_Y_CLASS}`}>
+      <div className={PAGE_CONTAINER_CLASS}>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.618fr] gap-[26px] lg:gap-[42px] items-stretch">
           {/* Left Editorial Image & Headline Anchor */}
           <div className="flex flex-col justify-between space-y-[26px]">
@@ -18,7 +19,7 @@ export function CompetitiveEdgeSection() {
               </h2>
             </div>
 
-            <div className="relative flex-1 min-h-[260px] rounded-[16px] overflow-hidden border border-[#EBEBEB] bg-white">
+            <div className="relative flex-1 min-h-[280px] lg:min-h-[360px] rounded-[16px] overflow-hidden border border-[#EBEBEB] bg-white">
               <ResilientImage
                 src={datacenterNodeImg}
                 alt="Perangkat keras jaringan fiber optik dan Session Border Controller Voxnet berwarna putih dan oranye"
@@ -27,7 +28,7 @@ export function CompetitiveEdgeSection() {
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/75 via-transparent to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/80 via-transparent to-transparent"
               />
               <div className="absolute bottom-[26px] left-[26px] right-[26px] text-white">
                 <p className="text-[13px] font-medium text-white/85">

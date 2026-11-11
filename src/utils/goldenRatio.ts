@@ -22,8 +22,16 @@ export const GOLDEN_SCALE = {
 } as const;
 
 export const DESKTOP_BASELINE_WIDTH = 1440;
-export const CONTAINER_MAX_WIDTH = 1220;
-export const DESKTOP_CONTAINER_PADDING_X = 68;
+export const CONTAINER_MAX_WIDTH = 1660;
+export const MOBILE_CONTAINER_PADDING_X = 26;
+export const TABLET_CONTAINER_PADDING_X = 42;
+export const LAPTOP_CONTAINER_PADDING_X = 68;
+export const DESKTOP_CONTAINER_PADDING_X = 110;
+
+export const PAGE_CONTAINER_CLASS =
+  'max-w-[1660px] mx-auto px-[26px] sm:px-[42px] lg:px-[68px] xl:px-[110px]';
+
+export const SECTION_PADDING_Y_CLASS = 'py-[42px] md:py-[68px]';
 
 /**
  * Golden Ratio split constants (1.618fr : 1fr -> 61.8% / 38.2%)
@@ -41,7 +49,14 @@ export function computeDesktopSideSpace(viewportWidth: number = DESKTOP_BASELINE
 } {
   const clampedBox = Math.min(viewportWidth, CONTAINER_MAX_WIDTH);
   const outerMargin = (viewportWidth - clampedBox) / 2;
-  const innerPadding = viewportWidth >= 1024 ? DESKTOP_CONTAINER_PADDING_X : viewportWidth >= 768 ? 42 : 26;
+  const innerPadding =
+    viewportWidth >= 1280
+      ? DESKTOP_CONTAINER_PADDING_X
+      : viewportWidth >= 1024
+        ? LAPTOP_CONTAINER_PADDING_X
+        : viewportWidth >= 640
+          ? TABLET_CONTAINER_PADDING_X
+          : MOBILE_CONTAINER_PADDING_X;
   const totalSideSpace = outerMargin + innerPadding;
   const usableContentWidth = viewportWidth - totalSideSpace * 2;
 

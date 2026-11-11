@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Check, Search } from 'lucide-react';
 import { COVERAGE_CITIES, SOLUTION_PILLARS, SolutionPillar } from '../data/voxnetContent';
 import { filterCoverageCities } from '../utils/consultationLogic';
+import { PAGE_CONTAINER_CLASS, SECTION_PADDING_Y_CLASS } from '../utils/goldenRatio';
 
 interface SolutionsSectionProps {
   onSelectSolutionForConsultation: (solutionTitle: string) => void;
@@ -33,9 +34,9 @@ export function SolutionsSection({ onSelectSolutionForConsultation }: SolutionsS
   };
 
   return (
-    <section id="solusi" className="bg-white border-b border-[#EBEBEB] py-[68px] lg:py-[110px]">
-      <div className="max-w-[1220px] mx-auto px-[26px] md:px-[42px] lg:px-[68px]">
-        <div className="max-w-[644px] space-y-[16px] mb-[42px]">
+    <section id="solusi" className={`scroll-mt-[68px] bg-white border-b border-[#EBEBEB] ${SECTION_PADDING_Y_CLASS}`}>
+      <div className={PAGE_CONTAINER_CLASS}>
+        <div className="max-w-[740px] space-y-[16px] mb-[42px]">
           <p className="text-[13px] font-semibold tracking-wider text-[#B84408]">
             Solusi & Kapabilitas Inti
           </p>
@@ -46,7 +47,7 @@ export function SolutionsSection({ onSelectSolutionForConsultation }: SolutionsS
 
         {/* Asymmetric Golden Ratio Bento Grid: 4 Pillars (61.8%) + Specification Drawer (38.2%) */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.618fr_1fr] gap-[26px] lg:gap-[42px] items-stretch">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] lg:gap-[26px]">
             {SOLUTION_PILLARS.map((pillar) => {
               const isActive = pillar.id === activePillarId;
               return (
@@ -55,9 +56,9 @@ export function SolutionsSection({ onSelectSolutionForConsultation }: SolutionsS
                   type="button"
                   onClick={() => handlePillarSelect(pillar.id)}
                   aria-pressed={isActive}
-                  className={`text-left rounded-[16px] p-[26px] border transition-all duration-200 flex flex-col justify-between gap-[16px] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E7621B] ${
+                  className={`text-left rounded-[16px] p-[26px] border transition-all duration-200 flex flex-col justify-between gap-[22px] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E7621B] ${
                     isActive
-                      ? 'bg-[#F8F9FA] border-[#E7621B]'
+                      ? 'bg-[#FFF8F5] border-[#E7621B]'
                       : 'bg-white border-[#EBEBEB] hover:border-[#C7C7C7]'
                   }`}
                 >
@@ -66,7 +67,11 @@ export function SolutionsSection({ onSelectSolutionForConsultation }: SolutionsS
                       <span className="font-mono text-[13px] font-semibold text-[#B84408] tabular-nums">
                         {pillar.number}.
                       </span>
-                      <span className="text-[13px] font-medium text-[#525252]">
+                      <span
+                        className={`text-[13px] font-semibold ${
+                          isActive ? 'text-[#B84408]' : 'text-[#525252]'
+                        }`}
+                      >
                         {isActive ? 'Sedang Ditampilkan' : 'Lihat Spesifikasi'}
                       </span>
                     </div>
@@ -80,9 +85,9 @@ export function SolutionsSection({ onSelectSolutionForConsultation }: SolutionsS
                     </p>
                   </div>
 
-                  {/* Clean unboxed typographic metadata separator */}
-                  <div className="pt-[16px] border-t border-[#EBEBEB] text-[13px] font-medium text-[#525252]">
-                    {pillar.deploymentOptions.join(' · ')}
+                  {/* Aligned footer metadata */}
+                  <div className="pt-[16px] border-t border-[#EBEBEB] text-[13px] font-medium text-[#525252] min-h-[58px] flex items-start">
+                    <span>{pillar.deploymentOptions.join(' · ')}</span>
                   </div>
                 </button>
               );
@@ -90,7 +95,7 @@ export function SolutionsSection({ onSelectSolutionForConsultation }: SolutionsS
           </div>
 
           {/* Right Panel: Selected Pillar Architecture Details */}
-          <div className="bg-[#F8F9FA] border border-[#EBEBEB] rounded-[16px] p-[26px] flex flex-col justify-between gap-[26px]">
+          <div className="bg-[#F8F9FA] border border-[#EBEBEB] rounded-[16px] p-[26px] lg:p-[42px] flex flex-col justify-between gap-[26px]">
             <div className="space-y-[26px]">
               <div className="space-y-[10px]">
                 <p className="font-mono text-[13px] font-semibold text-[#B84408] tabular-nums">
@@ -141,7 +146,7 @@ export function SolutionsSection({ onSelectSolutionForConsultation }: SolutionsS
         </div>
 
         {/* Interactive 22-City Coverage Directory */}
-        <div className="mt-[42px] bg-[#F8F9FA] border border-[#EBEBEB] rounded-[16px] p-[26px] sm:p-[42px]">
+        <div className="mt-[42px] bg-[#F8F9FA] border border-[#EBEBEB] rounded-[16px] p-[26px] lg:p-[42px]">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-[26px]">
             <div className="space-y-[6px]">
               <h3 className="font-display text-[21px] font-bold text-[#1A1A1A] leading-[1.272]">

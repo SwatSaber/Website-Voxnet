@@ -88,14 +88,28 @@ test('golden ratio spatial scale produces balanced 1440px desktop margins and 1.
     xxl: 178,
   });
 
-  const desktop = computeDesktopSideSpace(1440);
-  assert.equal(desktop.outerMargin, 110);
-  assert.equal(desktop.innerPadding, 68);
-  assert.equal(desktop.totalSideSpace, 178);
-  assert.equal(desktop.usableContentWidth, 1084);
+  const mobile390 = computeDesktopSideSpace(390);
+  assert.equal(mobile390.innerPadding, 26);
+  assert.equal(mobile390.usableContentWidth, 338);
 
-  const cols = computeGoldenColumns(desktop.usableContentWidth);
-  assert.equal(cols.majorColumn, 644);
-  assert.equal(cols.minorColumn, 398);
+  const laptop1024 = computeDesktopSideSpace(1024);
+  assert.equal(laptop1024.innerPadding, 68);
+  assert.equal(laptop1024.usableContentWidth, 888);
+
+  const desktop1440 = computeDesktopSideSpace(1440);
+  assert.equal(desktop1440.outerMargin, 0);
+  assert.equal(desktop1440.innerPadding, 110);
+  assert.equal(desktop1440.totalSideSpace, 110);
+  assert.equal(desktop1440.usableContentWidth, 1220);
+
+  const desktop1920 = computeDesktopSideSpace(1920);
+  assert.equal(desktop1920.outerMargin, 130);
+  assert.equal(desktop1920.innerPadding, 110);
+  assert.equal(desktop1920.totalSideSpace, 240);
+  assert.equal(desktop1920.usableContentWidth, 1440);
+
+  const cols = computeGoldenColumns(desktop1440.usableContentWidth);
+  assert.equal(cols.majorColumn, 728);
+  assert.equal(cols.minorColumn, 450);
   assert.ok(Math.abs(cols.ratio - PHI) < 0.005);
 });

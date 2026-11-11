@@ -56,6 +56,13 @@
   background: linear-gradient(135deg, #e7621b 0%, #cf4e0b 52%, #b53f05 100%);
 }
 
+.vox-hero-radiant {
+  background-color: #e7621b;
+  background-image:
+    radial-gradient(ellipse 88% 92% at 76% 38%, rgba(255, 136, 72, 0.52) 0%, rgba(231, 98, 27, 0.16) 50%, rgba(231, 98, 27, 0) 80%),
+    linear-gradient(125deg, #c94b0a 0%, #dc5813 36%, #e7621b 68%, #ff8848 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
